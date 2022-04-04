@@ -16,16 +16,22 @@ public class RomanNumeral {
         roman = roman.trim();
         if (roman.isEmpty())
             throw new NumberFormatException("Your roman number must contain something!");
-        Pattern numerals = Pattern.compile("^(IX|IV|V{0,1}I{0,3})");
+        Pattern numerals = Pattern.compile("^(XC|XL|L{0,1}X{0,3})?(IX|IV|V{0,1}I{0,3})?");
         Matcher matcher = numerals.matcher(roman);
         if (!matcher.find())
             throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
-        String ones = matcher.group(1);
-        if (matcher.end(1) < roman.length())
+        if (matcher.end() < roman.length())
             throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
-        if (ones.isEmpty())
+        String ones = matcher.group(2);
+        String tens = matcher.group(1);
+        if (ones.isEmpty() && tens.isEmpty())
             throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
-        return translateValue(ones, "IV", "IX", 'V');
+        int natural = 0;
+        if (!ones.isEmpty())
+            natural += translateValue(ones, "IV", "IX", 'V');
+        if (!tens.isEmpty())
+            natural += 10 * translateValue(tens, "XL", "XC", 'L');
+        return natural;
     }
 
     private static int translateValue(String ones, String four, String nine, char five) {
