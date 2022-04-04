@@ -4,9 +4,9 @@ Taken from [here](https://codingdojo.org/kata/RomanNumerals/).
 
 About this Kata
 
-I wasn’t there, but I believe this Kata was performed at XP2001 by Kent Beck. 
-Here is [a video of Karl Scotland doing this Kata in Excel at agile 2008] 
-Here is [a video of JonJagger doing this Kata in Ruby using CyberDojo]
+I wasn't there, but I believe this Kata was performed at XP2001 by Kent Beck. 
+Here is [a video of Karl Scotland doing this Kata in Excel at agile 2008]. 
+Here is [a video of JonJagger doing this Kata in Ruby using CyberDojo].
 
 ## Difficulty - Easy.
 
@@ -31,7 +31,8 @@ The Kata says you should write a function to convert from normal numbers to Roma
      7 --> VII
 etc.
 
-For a full description of how it works, take a look at [this useful reference website] : 
+For a full description of how it works, take a look at 
+[this useful reference website](http://www.novaroma.org/via_romana/numbers.html): 
 which includes an implementation of the Kata in javascript.
 
 There is no need to be able to convert numbers larger than about 3000. 
