@@ -39,4 +39,14 @@ class RomanNumeralTest {
         assertThrowsExactly(NumberFormatException.class, tooBig, "Check zero is invalid");
     }
 
+    @ParameterizedTest
+    // Arrange
+    @CsvSource({
+            "1959, MCMLIX",
+            "2022, MMXXII" })
+    void checkGoodMiddleToRoman(int natural, String expected) {
+        // Act, Assert
+        assertEquals(expected, RomanNumeral.toRoman(natural));
+    }
+
 }
