@@ -10,6 +10,7 @@ public class RomanNumeral {
      * @return natural number represented by roman as an int
      */
     public static int toNatural(String roman){
+        // validation of input
         if (roman == null)
             throw new NumberFormatException("Your roman number must contain something!");
         roman = roman.trim();
@@ -24,21 +25,19 @@ public class RomanNumeral {
             throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
         if (ones.isEmpty())
             throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
-        int value = 0;
-        switch (ones){
-            case "IV":
-                value = 4;
-                break;
-            case "IX":
-                value = 9;
-                break;
-            default:
-                if (ones.charAt(0) == 'V')
-                    value = 5 + ones.length() - 1;
-                else
-                    value = ones.length();
-                break;
-        }
+        return translateValue(ones, "IV", "IX", 'V');
+    }
+
+    private static int translateValue(String ones, String four, String nine, char five) {
+        int value;
+        if (ones.equals(four))
+            value = 4;
+        else if (ones.equals(nine))
+            value = 9;
+        else if (ones.charAt(0) == five)
+            value = 5 + ones.length() - 1;
+        else
+            value = ones.length();
         return value;
     }
 
