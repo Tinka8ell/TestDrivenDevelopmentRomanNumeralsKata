@@ -24,8 +24,22 @@ public class RomanNumeral {
             throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
         if (ones.isEmpty())
             throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
-
-        return 0;
+        int value = 0;
+        switch (ones){
+            case "IV":
+                value = 4;
+                break;
+            case "IX":
+                value = 9;
+                break;
+            default:
+                if (ones.charAt(0) == 'V')
+                    value = 5 + ones.length() - 1;
+                else
+                    value = ones.length();
+                break;
+        }
+        return value;
     }
 
 
