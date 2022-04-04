@@ -1,6 +1,17 @@
 public class RomanNumeral {
 
     /**
+     * Convert a Roman Numeral String into a natural number.
+     *
+     * @param roman a String of valid roman numberals
+     * @return natural number represented by roman as an int
+     */
+    public static int toNatural(String roman){
+        return 0;
+    }
+
+
+    /**
      * Convert a natural number into Roman Numeral format.
      *
      * @param natural int from 1 to 3999 inclusive
@@ -22,6 +33,15 @@ public class RomanNumeral {
                 getRomanDigit(ones, "I", "V", "X");
     }
 
+    /**
+     * Utility function to format one digit with given roman numerals
+     *
+     * @param digit int (1 - 9) to format
+     * @param one Sting representing a "one" at this ordinal
+     * @param five Sting representing a "five" at this ordinal
+     * @param ten Sting representing a "ten" at this ordinal
+     * @return String as formatted "digit" as roman numerals
+     */
     private static String getRomanDigit(int digit, String one, String five, String ten) {
         String digits;
         switch (digit){
