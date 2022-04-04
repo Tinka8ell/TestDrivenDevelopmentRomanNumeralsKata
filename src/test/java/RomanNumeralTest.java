@@ -90,10 +90,16 @@ class RomanNumeralTest {
         // Arrange
         Executable empty = () -> RomanNumeral.toNatural("");
         Executable isNull = () -> RomanNumeral.toNatural(null);
+        Executable illegal = () -> RomanNumeral.toNatural("Z");
+        Executable doubleV = () -> RomanNumeral.toNatural("VV");
+        Executable lower = () -> RomanNumeral.toNatural("v");
 
         // Act, Assert
         assertThrowsExactly(NumberFormatException.class, empty, "Check empty String is invalid");
         assertThrowsExactly(NumberFormatException.class, isNull, "Check null is invalid");
+        assertThrowsExactly(NumberFormatException.class, illegal, "Check String has illegal character");
+        assertThrowsExactly(NumberFormatException.class, doubleV, "Check can't have two V's");
+        assertThrowsExactly(NumberFormatException.class, lower, "Check not allow lowercase");
     }
 
     @ParameterizedTest

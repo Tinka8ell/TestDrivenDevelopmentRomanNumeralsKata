@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RomanNumeral {
 
     /**
@@ -7,6 +10,21 @@ public class RomanNumeral {
      * @return natural number represented by roman as an int
      */
     public static int toNatural(String roman){
+        if (roman == null)
+            throw new NumberFormatException("Your roman number must contain something!");
+        roman = roman.trim();
+        if (roman.isEmpty())
+            throw new NumberFormatException("Your roman number must contain something!");
+        Pattern numerals = Pattern.compile("^(IX|IV|V{0,1}I{0,3})");
+        Matcher matcher = numerals.matcher(roman);
+        if (!matcher.find())
+            throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
+        String ones = matcher.group(1);
+        if (matcher.end(1) < roman.length())
+            throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
+        if (ones.isEmpty())
+            throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
+
         return 0;
     }
 
