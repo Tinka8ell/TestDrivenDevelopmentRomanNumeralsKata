@@ -16,21 +16,47 @@ public class RomanNumeral {
         roman = roman.trim();
         if (roman.isEmpty())
             throw new NumberFormatException("Your roman number must contain something!");
-        Pattern numerals = Pattern.compile("^(XC|XL|L{0,1}X{0,3})?(IX|IV|V{0,1}I{0,3})?");
+        int natural= 0;
+        Pattern numerals = Pattern.compile("^(M{0,3})?");
         Matcher matcher = numerals.matcher(roman);
-        if (!matcher.find())
+        if (matcher.find()){
+            String thousands = matcher.group(0); // read it
+            if (!thousands.isEmpty()){
+                natural += 1000 * translateValue(thousands, "ZZZ", "ZZZ", 'Z');
+                roman = roman.substring(matcher.end(0)); // eat it
+            }
+        }
+        numerals = Pattern.compile("^(CM|CD|D{0,1}C{0,3})?");
+        matcher = numerals.matcher(roman);
+        if (matcher.find()){
+            String hundreds = matcher.group(0);
+            if (!hundreds.isEmpty()){
+                natural += 100 * translateValue(hundreds, "CD", "CM", 'D');
+                roman = roman.substring(matcher.end(0)); // eat it
+            }
+        }
+        numerals = Pattern.compile("^(XC|XL|L{0,1}X{0,3})?");
+        matcher = numerals.matcher(roman);
+        if (matcher.find()){
+            String tens = matcher.group(0);
+            if (!tens.isEmpty()) {
+                roman = roman.substring(matcher.end(0)); // eat it
+                natural += 10 * translateValue(tens, "XL", "XC", 'L');
+            }
+        }
+        numerals = Pattern.compile("^(IX|IV|V{0,1}I{0,3})?");
+        matcher = numerals.matcher(roman);
+        if (matcher.find()){
+            String ones = matcher.group(0);
+            if (!ones.isEmpty()) {
+                roman = roman.substring(matcher.end(0)); // eat it
+                natural += translateValue(ones, "IV", "IX", 'V');
+            }
+        }
+        if (!roman.isEmpty())
             throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
-        if (matcher.end() < roman.length())
-            throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
-        String ones = matcher.group(2);
-        String tens = matcher.group(1);
-        if (ones.isEmpty() && tens.isEmpty())
-            throw new NumberFormatException("Your roman number contains illegal characters or badly formatted ones");
-        int natural = 0;
-        if (!ones.isEmpty())
-            natural += translateValue(ones, "IV", "IX", 'V');
-        if (!tens.isEmpty())
-            natural += 10 * translateValue(tens, "XL", "XC", 'L');
+        if (natural == 0)
+            throw new NumberFormatException("Your roman number must contain something!");
         return natural;
     }
 
