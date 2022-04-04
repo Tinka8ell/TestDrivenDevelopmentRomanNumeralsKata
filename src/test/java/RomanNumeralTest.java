@@ -70,6 +70,23 @@ class RomanNumeralTest {
     @ParameterizedTest
     // Arrange
     @CsvSource({
+            "10, X",
+            "20, XX",
+            "30, XXX",
+            "40, XL",
+            "50, L",
+            "60, LX",
+            "70, LXX",
+            "80, LXXX",
+            "90, XC" })
+    void checkTensToNatural(int expected, String roman) {
+        // Act, Assert
+        assertEquals(expected, RomanNumeral.toNatural(roman));
+    }
+
+    @ParameterizedTest
+    // Arrange
+    @CsvSource({
             "4, IV",
             "5, V",
             "6, VI",
