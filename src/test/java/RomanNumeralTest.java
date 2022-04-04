@@ -87,6 +87,23 @@ class RomanNumeralTest {
     @ParameterizedTest
     // Arrange
     @CsvSource({
+            "11, XI",
+            "29, XXIX",
+            "33, XXXIII",
+            "48, XLVIII",
+            "55, LV",
+            "64, LXIV",
+            "77, LXXVII",
+            "83, LXXXIII",
+            "99, XCIX" })
+    void checkMixedToNatural(int expected, String roman) {
+        // Act, Assert
+        assertEquals(expected, RomanNumeral.toNatural(roman));
+    }
+
+    @ParameterizedTest
+    // Arrange
+    @CsvSource({
             "4, IV",
             "5, V",
             "6, VI",
