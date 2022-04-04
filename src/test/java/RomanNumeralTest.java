@@ -18,7 +18,7 @@ class RomanNumeralTest {
             "8, VIII",
             "9, IX",
             "10, X",
-            "49, XL",
+            "49, XLIX",
             "50, L",
             "1888, MDCCCLXXXVIII" })
     void checkValidToRoman(int natural, String expected) {
