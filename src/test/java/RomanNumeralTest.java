@@ -104,6 +104,34 @@ class RomanNumeralTest {
     @ParameterizedTest
     // Arrange
     @CsvSource({
+            "100, C",
+            "200, CC",
+            "300, CCC",
+            "400, CD",
+            "500, D",
+            "600, DC",
+            "700, DCC",
+            "800, DCCC",
+            "900, CM" })
+    void checkHundredsToNatural(int expected, String roman) {
+        // Act, Assert
+        assertEquals(expected, RomanNumeral.toNatural(roman));
+    }
+
+    @ParameterizedTest
+    // Arrange
+    @CsvSource({
+            "1000, M",
+            "2000, MM",
+            "3000, MMM" })
+    void checkThousandsToNatural(int expected, String roman) {
+        // Act, Assert
+        assertEquals(expected, RomanNumeral.toNatural(roman));
+    }
+
+    @ParameterizedTest
+    // Arrange
+    @CsvSource({
             "4, IV",
             "5, V",
             "6, VI",
