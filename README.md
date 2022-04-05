@@ -30,7 +30,7 @@ and test class [RomanNumeralText](src/test/java/RomanNumeralTest.java) will be u
 * later can add reversed tests from part 1, a good middle (1959 and 2022) and some change over tests 4, 5, 6, 8, 9, 10, 49, 50,
   and 1888 (MDCCCLXXXVIII)
 
-### staged:
+### stages:
 * start with ones
   * involved regex for validation and extraction
 * added tens
